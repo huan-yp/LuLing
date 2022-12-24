@@ -1,0 +1,57 @@
+2022-12-24 11:15:01,068 - INFO - Server Start
+2022-12-24 11:16:05,223 - INFO - Server Start
+2022-12-24 11:16:09,420 - INFO - origin:{"user": "3051561876", "text": "/cmd online"}
+2022-12-24 11:16:09,421 - INFO - request:{'text': '/cmd online', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:16:09,421 - ERROR - CommandProcessor.online() got an unexpected keyword argument 'user'
+2022-12-24 11:16:09,422 - INFO - response:None
+2022-12-24 11:17:49,376 - INFO - Server Start
+2022-12-24 11:17:52,620 - INFO - origin:{"user": "3051561876", "text": "/cmd online"}
+2022-12-24 11:17:52,621 - INFO - request:{'text': '/cmd online', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:17:52,624 - INFO - response:{'text': None, 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:18:47,533 - INFO - Server Start
+2022-12-24 11:18:49,053 - INFO - origin:{"user": "3051561876", "text": "/cmd online"}
+2022-12-24 11:18:49,054 - INFO - request:{'text': '/cmd online', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:18:49,056 - INFO - response:{'text': '鹿灵AI已经上线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:19:10,912 - INFO - origin:{"user": "3051561876", "text": "/cmd online"}
+2022-12-24 11:19:10,913 - INFO - request:{'text': '/cmd online', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:19:10,914 - INFO - response:{'text': '鹿灵AI已经上线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:19:46,439 - INFO - origin:{"user": "3051561876", "text": "/cmd online"}
+2022-12-24 11:19:46,439 - INFO - request:{'text': '/cmd online', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:19:46,442 - INFO - response:{'text': '鹿灵AI已经上线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:19:55,427 - INFO - origin:{"user": "3051561876", "text": "123"}
+2022-12-24 11:19:55,428 - INFO - request:{'text': '123', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:19:55,430 - INFO - response:{'text': 'Test Message', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:20:03,282 - INFO - origin:{"user": "3051561876", "text": "offline"}
+2022-12-24 11:20:03,282 - INFO - request:{'text': 'offline', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:20:03,284 - INFO - response:{'text': 'Test Message', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:20:07,577 - INFO - origin:{"user": "3051561876", "text": "/cmd offline"}
+2022-12-24 11:20:07,577 - INFO - request:{'text': '/cmd offline', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:20:07,578 - INFO - response:{'text': '鹿灵AI已经下线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:20:11,786 - INFO - origin:{"user": "3051561876", "text": "/ offline"}
+2022-12-24 11:20:11,787 - INFO - request:{'text': '/ offline', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:20:11,787 - INFO - response:{'text': '鹿灵AI已经下线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:20:14,044 - INFO - origin:{"user": "3051561876", "text": "/ offline"}
+2022-12-24 11:20:14,045 - INFO - request:{'text': '/ offline', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:20:14,047 - INFO - response:{'text': '鹿灵AI已经下线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:20:25,347 - INFO - origin:{"user": "3051561876", "text": "Hello"}
+2022-12-24 11:20:25,348 - INFO - request:{'text': 'Hello', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:20:25,349 - INFO - response:{'text': '鹿灵AI已经下线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:20:49,397 - INFO - origin:{"user": "305156186", "text": "Hello"}
+2022-12-24 11:20:49,398 - INFO - request:{'text': 'Hello', 'user': '305156186', 'is_response': 0}
+2022-12-24 11:20:49,400 - INFO - response:{'text': '鹿灵AI已经下线', 'user': '305156186', 'is_response': 1}
+2022-12-24 11:20:58,684 - INFO - origin:{"user": "305156186", "text": "/cmd online 1123"}
+2022-12-24 11:20:58,684 - INFO - request:{'text': '/cmd online 1123', 'user': '305156186', 'is_response': 0}
+2022-12-24 11:20:58,687 - INFO - response:{'text': 'User 305156186 has no access for this operation', 'user': '305156186', 'is_response': 1}
+2022-12-24 11:21:11,860 - INFO - origin:{"user": "3051561876", "text": "/cmd online 1123"}
+2022-12-24 11:21:11,860 - INFO - request:{'text': '/cmd online 1123', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:21:11,862 - INFO - response:{'text': '鹿灵AI已经上线', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:21:16,684 - INFO - origin:{"user": "3051561876", "text": "/cm online 1123"}
+2022-12-24 11:21:16,684 - INFO - request:{'text': '/cm online 1123', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:21:16,686 - INFO - response:{'text': 'Test Message', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:23:55,212 - INFO - Server Start
+2022-12-24 11:24:28,308 - INFO - origin:{"user": "3051561876", "text": "dove:\u300a\u865a\u62df\u7684\u4f60\u300b, \u6211\u6ca1\u542c\u8fc7..."}
+2022-12-24 11:24:28,308 - INFO - request:{'text': 'dove:《虚拟的你》, 我没听过...', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:24:53,818 - INFO - response:{'text': '那歌很不错很有我自己的风格,有兴趣可以去bilibili上听一听!我还会演唱一些我亲自谱写的歌,然后自己唱起来,很棒哇!我还会唱一些很有名的歌,希望大家都喜欢,如果你喜欢我演唱的话,可以关注我哦!', 'user': '3051561876', 'is_response': 1}
+2022-12-24 11:25:25,022 - INFO - origin:{"user": "3051561876", "text": "dove:\u597d\u554a\u597d\u554a, \u4f60\u7684 bilibili ID \u662f\u4ec0\u4e48\uff1f"}
+2022-12-24 11:25:25,022 - INFO - request:{'text': 'dove:好啊好啊, 你的 bilibili ID 是什么？', 'user': '3051561876', 'is_response': 0}
+2022-12-24 11:26:05,832 - INFO - response:{'text': '我的bilibili id是"虚拟的女生"哦!可以直接搜索一下,你能找到哦！我现在正在直播哦,你可以来看一下哦～', 'user': '3051561876', 'is_response': 1}

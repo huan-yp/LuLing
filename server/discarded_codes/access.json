@@ -1,0 +1,37 @@
+{ 
+    "characters":{
+        "chair":{
+            "character_external_id": "sWmJWP54MljfcCu2yAhqI3azaCwYUIVBmfX3wZX6fB0", 
+            "history_external_id": "6dU1WNHBrZMmmiIQV90gCeOV0KTJk3LaTc0pNFlI-fA", 
+            "tgt": "internal_id:10732:83983e05-a4be-4267-bcd5-a74b2131de70"
+        },
+        "群聊鹿灵":{
+            "character_external_id":"UJH5vdpHEzSRUP9h4zfhSttnir4O4mbomOe0Q_nZ6rU",
+            "tgt":"internal_id:215124:909fe92f-d3e9-410f-ae7b-532e08ff3458",
+            "copys":{
+                "general":{
+                    "history_external_id": "5mfWid9_8aWUuMtwbqc9GSaMEY9VE_1HWdbbsMiz9zM"
+                }
+            }
+        },
+        "私聊鹿灵":{
+            "character_external_id":"_MwkwWt5TV1x1St4IljM8jurRqRgkJ7meEiMzBSiASo",
+            "tgt":"internal_id:215124:b2e7e158-bbb0-45cc-a2d4-0f0b6f690133",
+            "copys":{
+                "幻影":{
+                    "history_external_id":"g4hwE7ZVwAbTiM7Zucz0bK__oqMut57UKGrHfHhjHWw"
+                },
+                "兮月":{
+                    "history_external_id": "j2uCr57t10HTCXFIP_phFyhOJqqxWj9HaJ6RiB01eKE"
+                },
+                "怕疼":{
+                    "history_external_id":"WOcwPRa_SlWmXVhv6PbFQgOaykiV2p9W4Yn40GCEYeQ"
+                },
+                "鸽子":{
+                    "history_external_id":"8Sp2xAxawLPl_rwWNwSz8BtFnEvUrj6m9hVN5t5OBV4"
+                }
+            }
+        }
+    },
+    "authorization":"Token ccae5043f07315c4bfe312136e9407cbb3725367"
+}

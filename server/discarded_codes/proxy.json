@@ -1,0 +1,14 @@
+{
+    "server": "cn-shtele.lfk5s2.ccddn4.icu",
+    "local_address": "127.0.0.1",
+    "local_port": 1080,
+    "timeout": 300,
+    "workers": 1,
+    "server_port": 65002,
+    "password": "4EyS3nbpwetIJvPQ",
+    "method": "chacha20-ietf-poly1305",
+    "obfs": "simple_obfs_http",
+    "obfs_param": "3c5bf104631.dm.files.1drv.com",
+    "protocol": "origin",
+    "protocol_param": ""
+}
