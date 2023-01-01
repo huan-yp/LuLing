@@ -7,7 +7,7 @@ import constants as C
 
 from global_attributes import G
 from characterInteractive import Bot, main_bot
-
+from json import load, dump
 
 
 
@@ -15,9 +15,21 @@ class AccessProcessor():
     """权限管理
     """
     def __init__(self) -> None:
-        self.super_admins = ["3051561876", ] # 权限等级为 2
-        self.admins = [] # 权限等级为 1
-        self.blacklist = []
+        self.super_admins = ["3051561876", "305399907"] # 权限等级为 100
+        self.admins = [] # 权限等级为 10
+        self.blacklist = [] # 权限等级为 0
+        try:
+            self.load_access()
+        except:
+            self.save_access()
+        
+    def load_access(self):
+        with open(C.DATA_PATH, mode="r+") as f:
+            self.__dict__.update(load(f))
+        
+    def save_access(self):
+        with open(C.DATA_PATH, mode="w+") as f:
+            dump(self.__dict__, f)
         
     def get_access_level_by_id(self, qq):
         if qq in self.super_admins:
@@ -26,12 +38,20 @@ class AccessProcessor():
             return 10
         if qq in self.blacklist:
             return 0
-            
         return 1
 
     def set_access(self, qq, access):
-        pass
-
+        if access == 'blacklist':
+            self.blacklist.append(qq)
+        if access == 'admins':
+            self.admins.append(qq)  
+        self.save_access()  
+    
+    def erase_access(self, qq):
+        if qq in self.blacklist:self.blacklist.remove(qq)
+        if qq in self.admins:self.admins.remove(qq)
+        self.save_access()
+        
 
 def authorization_decorator(level=1):
     """权限管理修饰器
@@ -122,6 +142,19 @@ class CommandProcessor():
             return self.offline(user=user)
         if command == 'online':
             return self.online(user=user)
+        if command == 'set_access':
+            if len(args) != 3:
+                return "Incorrect command format. 'set_access [qq] [access_level]'"
+            return self.set_access(user=user, target=args[1], access=args[2])
+        if command == 'set_statu':
+            if len(args) != 3:
+                return "Incorrect command format. 'set_statu [key] [value]'"
+            return self.set_statu(user=user, key=args[1], value=args[2])
+        if command == "show":
+            if len(args) != 2:
+                return "Incorrect command format. 'show [key]'"
+            return self.show(user=user, key=args[1])
+        return None
         
     @authorization_decorator(level=1)
     def help(self, user):
@@ -137,7 +170,44 @@ class CommandProcessor():
         G.bot_online = False
         return C.OFFLINE_MESSAGE
     
+    @authorization_decorator(level=10)
+    def erase_access(self, user, target):
+        if G.access_processor.get_access_level_by_id(user) <= G.access_processor.get_access_level_by_id(target):
+            return "You have no access for this operation"
+        G.access_processor.erase_access(target)
+        return None
+    
+    @authorization_decorator(level=10)
+    def set_access(self, user, target, access):
+        erase_info = self.erase_access(user=user, target=target)
+        if erase_info is not None:
+            return erase_info
+        if access not in C.ACCESS_LEVEL.keys():
+            return f"access group '{access}' do not exist"
+        if G.access_processor.get_access_level_by_id(user) <= C.ACCESS_LEVEL[access]:
+            return "You have no access for this operation"
+        G.access_processor.set_access(target, access)
+        return f"User {target}'s access is set to '{access}'"
 
+    @authorization_decorator(level=10)
+    def set_statu(self, user, key, value):
+        if key not in ["SERVER_DEBUG"]:
+            return f"attribute {key} do not exist"
+        if key == "SERVER_DEBUG":
+            if value not in ["True", "False"]:
+                return f"attribute {key} haven't got value {value}"
+            C.SERVER_DEBUG = value == "True"
+        return f"attribute {key} is set to '{value}'" 
+        
+    @authorization_decorator(level=1)
+    def show(self, user, key):
+        if key == "access":
+            return str(G.access_processor.__dict__)
+        if key == "statu":
+            return str({"SERVER_DEBUG":C.SERVER_DEBUG, })
+        return f"No such key {key} for show command"
+            
+        
 class MainProcessor():
     """消息处理器
     """
@@ -150,14 +220,21 @@ class MainProcessor():
         return self.bot.chat(text)
     
     def process(self, text, user):
-        is_cmd, args = abstract_command(text)
-        if not is_cmd:
-            return self.chat(user=user, text=text)
-        else:
-            if isinstance(args, str):
-                return args
-            return self.command_processor.do_command(user, args)
+        return self.chat(user=user, text=text)
     
+    def process_cmd(self, text, user):
+        is_cmd, args = abstract_command(text)
+        if isinstance(args, str):
+            return args
+        if is_cmd:
+            cmd_res = self.command_processor.do_command(user, args)
+            if cmd_res is None:
+                return (True, f"command {text} do not exist")
+            else:
+                return (True, cmd_res)
+        else:
+            return (False, None)
+            
     
 if __name__ == "__main__":
     print(abstract_command("/cmd set access 13214342 2"))

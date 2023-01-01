@@ -26,6 +26,7 @@ from json import loads, dumps, load
 from global_attributes import G
 from logger import logger
 from manager import AccessProcessor, MainProcessor
+from translate import Translator
 
 
 
@@ -63,6 +64,7 @@ class MyServer(socketserver.BaseRequestHandler):
         request_chat = Chat(request_dict['text'], request_dict['user'])
         logger.log(INFO, "request:" + str(request_chat))
         response = get_response(request_chat)
+        response.text += "\n----译文仅供参考, 以原文为准----\n" + G.translator.translate(response.text)
         logger.log(INFO, "response:" + str(response))
         conn.sendall(dumps({"text":response.text, "user":response.user}).encode('utf-8'))
         conn.close()
@@ -72,18 +74,24 @@ def get_response(request:Chat) -> Chat:
     """通过 ChatRequest 获取 Response
     """
     try:
+        statu, text = G.main_processor.process_cmd(text=request.text, user=request.user)
+        if statu:
+            return Chat(text, request.user, 1)
         G.lock.acquire()
         if (G.statu == 'waiting'):
             G.statu = 'processing'
             G.lock.release() 
-            reply_text = G.main_processor.process(text=request.text, user=request.user)
+            try:
+                reply_text = G.main_processor.process(text=request.text, user=request.user)
+            except (Exception, BaseException) as e:
+                reply_text = "Message With Error" + str(e)
             G.lock.acquire()
             G.statu = 'waiting'
             G.lock.release()
             return Chat(reply_text, request.user, 1)
         else: 
             G.lock.release()
-            return Chat(C.EMPTY_MESSAGE, request.user, 1)
+            return Chat("Your Message Is Ignored", request.user, 1)
     except (BaseException, Exception) as e:
         logger.log(ERROR, str(e))
 
@@ -91,6 +99,7 @@ def get_response(request:Chat) -> Chat:
 def main():
     G.access_processor = AccessProcessor()
     G.main_processor = MainProcessor()
+    G.translator = Translator()
     server = socketserver.ThreadingTCPServer(('127.0.0.1', 1145), MyServer)
     logger.log(INFO, "Server Start")
     server.serve_forever()

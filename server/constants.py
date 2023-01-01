@@ -43,7 +43,7 @@ CHAT_TEMPLATE_DATA = {
 
 BOT_ID = "1558718963"
 
-SERVER_DEBUG = True # 如果为 True 则不向网站发出请求
+SERVER_DEBUG = False # 如果为 True 则不向网站发出请求
 
 CHARACTER_NAME = "鹿灵"
 
@@ -60,5 +60,19 @@ OFFLINE_MESSAGE = "鹿灵AI已经下线"
 
 ONLINE_MESSAGE = "鹿灵AI已经上线"
 
+ACCESS_LEVEL = {
+    "blacklist":0,
+    "user":1,
+    "admins":10,
+    "super_admins":100
+}
+
+DATA_PATH = "./data.txt"
+
+APP_ID = '20221230001514354'        
+
+SECRET_KEY = 'BpEfL6kZSRDSFLMTGi6k'
+
+TRANSLATE_URL = '/api/trans/vip/translate'  # 通用翻译API HTTP地址
 
 

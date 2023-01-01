@@ -8,6 +8,7 @@ class GlobalAttr():
     access_processor = None
     bot_online = True
     main_processor = None
+    translator = None
 
 
 G = GlobalAttr()

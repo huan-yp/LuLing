@@ -1,11 +1,19 @@
 import requests
 import os
 import re
+import time
 
 import constants as C
 
 from global_attributes import G
 
+
+def CheckNetWork():
+        """检查网络状况, 网络正常返回 True, 否则返回 False
+        """
+        time.sleep(.5)
+        return os.system("ping beta.character.ai") == False
+    
 
 def decode_message(message_string:str):
     """将获取到的 HTTPS body 解码为 ResponseChain
@@ -79,18 +87,27 @@ class Bot():
         if not G.bot_online:
             return C.OFFLINE_MESSAGE
         if C.SERVER_DEBUG:
+            time.sleep(5)
             return "Test Message"
         data = C.CHAT_TEMPLATE_DATA
         data["history_external_id"] = self.history
         data["character"] = self.character
         data["tgt"] = self.tgt
         data["text"] = text
-        response = requests.post(f"{C.URL}/chat/streaming/", headers=C.CHAT_TEMPLATE_HEADERS, data=data, proxies=C.PROXY)
+        try:
+            response = requests.post(f"{C.URL}/chat/streaming/", headers=C.CHAT_TEMPLATE_HEADERS, data=data, proxies=C.PROXY)
+        except (Exception, BaseException) as e:
+            if CheckNetWork():
+                statu_text = "临时网络波动, 请重试"
+            else:
+                statu_text = "当前网络状态异常, 请等待 5 分钟后重试"
+            return f"{statu_text}\n\n Exception {str(e)}, occurred.\n" 
         if response.status_code == 200:
             self.current_interaction = MessageChain(decode_message(response.text))
             return self.current_interaction.current_text
-        
-        raise RequestError(response)
+        else:
+            return f"An Http Error Encountered,{str(response.status_code)}, {str(response.headers)}"
+        # raise RequestError(response)
     
     def change(self):
         pass
@@ -100,7 +117,7 @@ class Bot():
     
     
 main_bot = Bot(
-    his = "wFOiVjQkIE9cjwwhWck_6Kgx4HQ1Fh3Tm_9XrDA65R0", 
+    his = "ukh76-LyrIaYtYNvmDrWM4DEl2jW29Q3vy9jQ78H03c", 
     char = "_MwkwWt5TV1x1St4IljM8jurRqRgkJ7meEiMzBSiASo",
     tgt = "internal_id:215124:b2e7e158-bbb0-45cc-a2d4-0f0b6f690133"
     )   
