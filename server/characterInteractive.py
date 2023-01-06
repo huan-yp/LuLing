@@ -54,6 +54,7 @@ class MessageChain():
         self.current_message = 0
         self.messages = []
         for response in response_chain:
+            response["text"] = response["text"].replace("\\", "")
             self.messages.append((response["text"], response["id"]))
     
     def get_text_by_id():
@@ -104,6 +105,7 @@ class Bot():
             return f"{statu_text}\n\n Exception {str(e)}, occurred.\n" 
         if response.status_code == 200:
             self.current_interaction = MessageChain(decode_message(response.text))
+            # print(self.current_interaction.current_text)
             return self.current_interaction.current_text
         else:
             return f"An Http Error Encountered,{str(response.status_code)}, {str(response.headers)}"
@@ -117,7 +119,7 @@ class Bot():
     
     
 main_bot = Bot(
-    his = "ukh76-LyrIaYtYNvmDrWM4DEl2jW29Q3vy9jQ78H03c", 
+    his = "n4_kIpdCw06IQ206cRvKQXIFG2XAOAeWfuo-_MssGQo", 
     char = "_MwkwWt5TV1x1St4IljM8jurRqRgkJ7meEiMzBSiASo",
     tgt = "internal_id:215124:b2e7e158-bbb0-45cc-a2d4-0f0b6f690133"
     )   
